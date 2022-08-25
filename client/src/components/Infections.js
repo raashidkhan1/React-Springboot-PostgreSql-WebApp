@@ -30,8 +30,8 @@ class Infections extends Component{
              response.data.forEach((value)=>{
                  formatResponse.push({
                      serial: ++count,
-                     infections: value[0],
-                     name: value[1],
+                     infections: value.infectionsCount,
+                     name: value.countryName,
                  })
              })
              this.setState({data: formatResponse})

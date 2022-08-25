@@ -48,9 +48,9 @@ onSubmitHandler(e){
                 response.data.forEach((value)=>{
                     formatResponse.push({
                         serial: ++count,
-                        infections: value[0],
-                        deaths: value[1],
-                        recordedDate: value[2]
+                        infections: value.infectionsCount,
+                        deaths: value.deathCount,
+                        recordedDate: value.recordedDate
                     })
                 })
                 this.setState({...this.state, data: formatResponse})

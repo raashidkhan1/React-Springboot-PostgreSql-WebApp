@@ -1,7 +1,7 @@
 package com.test.application.models;
 
 import java.util.List;
-// Model class for reporting data
+
 public class HighestLowestVaccinations {
 
 	private final List<ReportRow> highest;

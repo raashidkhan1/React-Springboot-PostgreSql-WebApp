@@ -32,7 +32,6 @@ public class CovidServiceImpl implements CovidService {
 	public HighestLowestVaccinations getHighestLowestVaccinations() {
 		List<ReportRow> highest = qRepository.getHighestVaccinations(LIMIT);
 		List<ReportRow> lowest = qRepository.getLowestVaccinations(LIMIT);
-		
 		return new HighestLowestVaccinations(highest, lowest);
 	}
 

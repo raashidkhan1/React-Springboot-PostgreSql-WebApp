@@ -20,22 +20,22 @@ public interface QueryRepository extends JpaRepository<Countries, Long> {
 	Optional<Countries> findByName(String name);
 	
 	
-	@Query(value = "SELECT ca.infections, ca.deaths, ca.recorded_date FROM cases ca INNER JOIN countries co "
+	@Query(value = "SELECT ca.infections as infectionsCount, ca.deaths as deathCount, ca.recorded_date as recordedDate FROM cases ca INNER JOIN countries co "
 			+ "ON ca.iso_country = co.code "
 			+ "WHERE LOWER(co.name) LIKE LOWER(CONCAT(?1, '%')) AND ca.recorded_date\\:\\:text <= ?2 ", nativeQuery = true)
 	List<QueryRow> findByCountryNameAndDate(String name, String date);
 	
-	@Query(value = "SELECT SUM(va.daily_vaccinations) AS total, co.name FROM "
+	@Query(value = "SELECT SUM(va.daily_vaccinations) AS vaccinationCount, co.name as countryName FROM "
 			+ "vaccinations va INNER JOIN countries co ON va.iso_country=co.code "
-			+ "GROUP BY co.name ORDER BY total DESC LIMIT ?1 ", nativeQuery = true)
+			+ "GROUP BY co.name ORDER BY vaccinationCount DESC LIMIT ?1 ", nativeQuery = true)
 	List<ReportRow> getHighestVaccinations(int count);
 	
-	@Query(value = "SELECT SUM(va.daily_vaccinations) AS total, co.name FROM "
+	@Query(value = "SELECT SUM(va.daily_vaccinations) AS vaccinationCount, co.name as countryName FROM "
 			+ "vaccinations va INNER JOIN countries co ON va.iso_country=co.code "
-			+ "GROUP BY co.name ORDER BY total ASC LIMIT ?1", nativeQuery = true)
+			+ "GROUP BY co.name ORDER BY vaccinationCount ASC LIMIT ?1", nativeQuery = true)
 	List<ReportRow> getLowestVaccinations(int count);
 	
-	@Query(value = "SELECT SUM(ca.infections) AS total, co.name FROM cases ca INNER JOIN countries co"
+	@Query(value = "SELECT SUM(ca.infections) AS infectionsCount, co.name as countryName FROM cases ca INNER JOIN countries co"
 			+ " ON ca.iso_country=co.code \n"
 			+ "GROUP BY co.population, co.name ORDER BY SUM(ca.infections)/100000 DESC LIMIT ?1", nativeQuery = true)
 	List<InfectionReportRow> getHighestInfections(int count);

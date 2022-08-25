@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.test.application.services.CovidService;
 
-//Controller class implementation, provides endpoints for rest services
+//Controller class provides endpoints for rest services
 @CrossOrigin
 @RestController
 public class MainController {

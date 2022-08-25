@@ -1,9 +1,6 @@
 package com.test.application.models;
 
-// Model interface for Reporting data
 public interface ReportRow {
-	
+	long getVaccinationCount();
 	String getCountryName();
-	int getVaccinationCount();
-
 }

@@ -47,8 +47,8 @@ state = {
                response.data[identifier].forEach((value)=>{
                   formatResponse1.push({
                      serial: ++count,
-                     vaccinations: value[0],
-                     name: value[1]
+                     vaccinations: value.vaccinationCount,
+                     name: value.countryName
                  })
                })
             }
@@ -56,8 +56,8 @@ state = {
                response.data[identifier].forEach((value)=>{
                   formatResponse2.push({
                      serial: ++count,
-                     vaccinations: value[0],
-                     name: value[1]
+                     vaccinations: value.vaccinationCount,
+                     name: value.countryName
                  })
                })
             }
